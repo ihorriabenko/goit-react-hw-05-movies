@@ -1,4 +1,4 @@
-import PostsList from "modules/PostsList";
+import PostsList from "modules/Posts";
 
 const HomePage = () => {
   return <main>

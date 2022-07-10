@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { getPosts } from 'shared/api/posts';
+import PostList from 'shared/components/PostList';
 
-const PostsList = () => {
+const Posts = () => {
   const [state, setState] = useState({
     items: [],
     loading: false,
@@ -37,19 +37,13 @@ const PostsList = () => {
 
   const { items, loading, error } = state;
 
-  const elements = items.map(({ id, title }) => (
-    <li key={id}>
-      <Link to={`/movies/${id}`}>{title}</Link>
-    </li>
-  ));
-
   return (
     <>
       {loading && <p>...Loading</p>}
       {error && <p>Posts not found</p>}
-      <ul>{elements}</ul>
+      <PostList items={items}/>
     </>
   );
 };
 
-export default PostsList;
+export default Posts;

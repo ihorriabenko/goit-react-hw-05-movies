@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
-import SinglePost from "modules/SinglePost";
-import { getPostById } from 'shared/api/posts';
+import { useParams, useNavigate, Link, Outlet } from 'react-router-dom';
+import SinglePost from "modules/MovieDetails";
+import { fetchPostsWithId } from 'shared/api/posts';
 
 const SinglePostPage = () => {
   const [state, setState] = useState({
@@ -11,19 +11,20 @@ const SinglePostPage = () => {
   })
 
   const {id} = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchPosts = async() => {
+    const fetchPost = async() => {
       setState(prevState => ({
         ...prevState,
         loading: true,
       }))
 
       try {
-        const post = await getPostById(id);
+        const {data} = await fetchPostsWithId(id);
         setState(prevState => ({
           ...prevState,
-          post,
+          post: {...data},
           loading: false,
         }))
       } catch (error) {
@@ -34,8 +35,10 @@ const SinglePostPage = () => {
       }
     }
 
-    fetchPosts();
-  }, [])
+    fetchPost();
+  }, []);
+
+  const goBack = () => navigate(-1);
 
   const {post, loading, error} = state;
   const isPost = Object.keys(post).length > 0;
@@ -44,7 +47,10 @@ const SinglePostPage = () => {
     <div className="container">
     {loading && <p>...Loading</p>}
     {error && <p>Post not found</p>}
-      {isPost && <SinglePost/>}
+    {isPost && <button onClick={goBack}>Go back</button>}
+      {isPost && <SinglePost {...post}/>}
+      {isPost && <Link to={'cast'}>Cast</Link>}
+      <Outlet/>
     </div>
   </main>
 }
