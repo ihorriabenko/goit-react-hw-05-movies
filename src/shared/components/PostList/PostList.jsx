@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import PropTypes, { array, arrayOf } from 'prop-types';
 
 const PostList = ({items}) => {
   const location = useLocation();
@@ -14,6 +15,10 @@ const PostList = ({items}) => {
 
 PostList.defaultProps = {
   items: [],
+}
+
+PostList.propTypes = {
+  items: PropTypes.array.isRequired,
 }
 
 export default PostList;

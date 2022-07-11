@@ -1,4 +1,5 @@
 import { useState } from "react"
+import PropTypes from 'prop-types';
 
 const PostsSearchForm = ({onSubmit}) => {
   const [state, setState] = useState({
@@ -27,6 +28,10 @@ const PostsSearchForm = ({onSubmit}) => {
       <button>Search</button>
     </form>
   )
+}
+
+PostsSearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 }
 
 export default PostsSearchForm;

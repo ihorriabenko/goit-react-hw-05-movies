@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const SinglePost = ({poster_path, title, vote_average, overview, genres}) => {
   const imgSrc = `https://image.tmdb.org/t/p/w500${poster_path}`;
   const gnrs = genres.map(({name}) => name).join(', ');
@@ -12,6 +14,14 @@ const SinglePost = ({poster_path, title, vote_average, overview, genres}) => {
      <p>{gnrs}</p>
   </div>
   )
+}
+
+SinglePost.propTypes = {
+  poster_path: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  vote_average: PropTypes.number.isRequired,
+  overview: PropTypes.string.isRequired,
+  genres: PropTypes.array.isRequired,
 }
 
 export default SinglePost;
