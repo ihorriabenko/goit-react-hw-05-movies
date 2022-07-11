@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchCastWithId } from 'shared/api/posts';
+import { fetchReviewsWithId } from 'shared/api/posts';
 
-const CastPage = () => {
+const ReviewsPage = () => {
   const [state, setState] = useState({
     items: [],
     loading: false,
@@ -19,11 +19,11 @@ const CastPage = () => {
       }));
 
       try {
-        const { data } = await fetchCastWithId(id);
+        const { data } = await fetchReviewsWithId(id);
         setState(prevState => ({
           ...prevState,
           loading: false,
-          items: data.cast,
+          items: data.results,
         }));
       } catch (error) {
         setState(prevState => ({
@@ -39,31 +39,29 @@ const CastPage = () => {
 
   const { items, loading, error } = state;
 
-  const elements = items.map(({ id, profile_path, name, character }) => {
-    const imgSrc = `https://image.tmdb.org/t/p/w200${profile_path}`;
-    const imgPlug = 'https://ca.slack-edge.com/T02KJ42DHFD-U03L88JEG07-146f590d3ef9-512'
-    const src = profile_path ? imgSrc : imgPlug;
+  const elements = items.map(({ id, author, content}) => {
 
     return (
       <li key={id}>
-        <img src={src} alt={name} width='200'/>
-        <p>{name}</p>
-        <p>Character: {character}</p>
+        <h3>Author: {author}</h3>
+        <p>{content}</p>
       </li>
     );
   });
+
+  const elmnts = items.length === 0 ? <p>reviews not found</p> : elements;
 
   return (
     <>
       {loading && <p>...Loading</p>}
       {error && <p>page not found</p>}
-      {elements}
+      {elmnts}
     </>
   );
 };
 
-CastPage.defaultProps = {
+ReviewsPage.defaultProps = {
   items: [],
 };
 
-export default CastPage;
+export default ReviewsPage;

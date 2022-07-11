@@ -24,6 +24,11 @@ export const fetchCastWithId = async id => {
   return response;
 }
 
+export const fetchReviewsWithId = async id => {
+  const response = axios.get(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=196da2d2dd4f95fd9bfe0927ab5d4d33&language=en-US`);
+  return response;
+}
+
 // ;(async () => {
 //   const response = await axios({
 //     url: 'https://api.themoviedb.org/3/movie/616047?api_key=196da2d2dd4f95fd9bfe0927ab5d4d33&language=en-US',

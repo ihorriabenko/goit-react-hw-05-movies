@@ -39,7 +39,6 @@ const PostsSearch = () => {
     if (search) {
       fetchPosts();
     }
-    console.log(search)
   }, [search, setState]);
 
   const changeSearch = ({ search }) => setSearchParams({query: search});
