@@ -18,7 +18,7 @@ PostList.defaultProps = {
 }
 
 PostList.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.exact({id: PropTypes.number.isRequired, title: PropTypes.string.isRequired}))
+  items: PropTypes.arrayOf(PropTypes.shape({id: PropTypes.number.isRequired, title: PropTypes.string}))
 }
 
 export default PostList;
