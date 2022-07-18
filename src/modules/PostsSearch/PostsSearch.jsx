@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import PostList from 'shared/components/PostList';
+import PostList from 'shared/components/FilmList';
 import PostsSearchForm from './PostsSearchForm';
-import { fetchPostsWithQuery } from 'shared/api/posts';
+import { fetchPostsWithQuery } from 'shared/api/films';
 
 const PostsSearch = () => {
   const [state, setState] = useState({

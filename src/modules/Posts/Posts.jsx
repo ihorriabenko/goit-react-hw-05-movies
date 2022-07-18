@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getPosts } from 'shared/api/posts';
-import PostList from 'shared/components/PostList';
+import { getPosts } from 'shared/api/films';
+import PostList from 'shared/components/FilmList';
 
 const Posts = () => {
   const [state, setState] = useState({

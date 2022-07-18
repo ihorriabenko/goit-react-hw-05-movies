@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchReviewsWithId } from 'shared/api/posts';
+import { fetchReviewsWithId } from 'shared/api/films';
 
 const ReviewsPage = () => {
   const [state, setState] = useState({

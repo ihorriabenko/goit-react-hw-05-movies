@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import PropTypes, { array, arrayOf } from 'prop-types';
+import PropTypes from 'prop-types';
 
 const PostList = ({items}) => {
   const location = useLocation();
@@ -18,7 +18,7 @@ PostList.defaultProps = {
 }
 
 PostList.propTypes = {
-  items: PropTypes.array.isRequired,
+  items: PropTypes.arrayOf(PropTypes.exact({id: PropTypes.number.isRequired, title: PropTypes.string.isRequired}))
 }
 
 export default PostList;

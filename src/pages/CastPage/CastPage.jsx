@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchCastWithId } from 'shared/api/posts';
+import { fetchCastWithId } from 'shared/api/films';
 
 const CastPage = () => {
   const [state, setState] = useState({

@@ -7,7 +7,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import SinglePost from 'modules/MovieDetails';
-import { fetchPostsWithId } from 'shared/api/posts';
+import { fetchPostsWithId } from 'shared/api/films';
 
 const SinglePostPage = () => {
   const [state, setState] = useState({
