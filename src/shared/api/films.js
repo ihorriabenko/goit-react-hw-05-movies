@@ -6,17 +6,17 @@ const instance = axios.create({
   baseURL: 'https://api.themoviedb.org/3/',
 });
 
-export const getPosts = async () => {
+export const getFilms = async () => {
   const { data } = await instance.get(`trending/all/day?api_key=${apiKEY}`);
   return data;
 };
 
-export const fetchPostsWithId = async id => {
+export const fetchFilmsWithId = async id => {
   const response = await instance.get(`/movie/${id}?api_key=${apiKEY}&language=en-US`);
   return response;
 };
 
-export const fetchPostsWithQuery = async searchQuery => {
+export const fetchFilmsWithQuery = async searchQuery => {
   const response = await instance.get(`/search/movie?api_key=${apiKEY}&language=en-US&page=1&include_adult=false&query=${searchQuery}`)
   return response;
 }

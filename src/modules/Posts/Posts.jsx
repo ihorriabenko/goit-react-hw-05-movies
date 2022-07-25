@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getPosts } from 'shared/api/films';
+import { getFilms } from 'shared/api/films';
 import PostList from 'shared/components/FilmList';
 
 const Posts = () => {
@@ -10,14 +10,14 @@ const Posts = () => {
   });
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchFilms = async () => {
       setState(prevState => ({
         ...prevState,
         loading: true,
       }))
 
       try {
-        const data = await getPosts();
+        const data = await getFilms();
         setState(prevState => ({
           ...prevState,
           items: [...data.results],
@@ -32,7 +32,7 @@ const Posts = () => {
       }
     }
 
-    fetchPosts();
+    fetchFilms();
   }, []);
 
   const { items, loading, error } = state;
@@ -40,7 +40,7 @@ const Posts = () => {
   return (
     <>
       {loading && <p>...Loading</p>}
-      {error && <p>Posts not found</p>}
+      {error && <p>Films not found</p>}
       <PostList items={items}/>
     </>
   );

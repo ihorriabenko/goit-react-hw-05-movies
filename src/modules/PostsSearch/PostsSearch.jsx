@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import PostList from 'shared/components/FilmList';
 import PostsSearchForm from './PostsSearchForm';
-import { fetchPostsWithQuery } from 'shared/api/films';
+import { fetchFilmsWithQuery } from 'shared/api/films';
 
 const PostsSearch = () => {
   const [state, setState] = useState({
@@ -14,14 +14,14 @@ const PostsSearch = () => {
   const search = searchParams.get('query');
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchFilms = async () => {
       setState(prevState => ({
         ...prevState,
         loading: true,
       }));
 
       try {
-        const {data} = await fetchPostsWithQuery(search);
+        const {data} = await fetchFilmsWithQuery(search);
         setState(prevState => ({
           ...prevState,
           items: data.results,
@@ -37,7 +37,7 @@ const PostsSearch = () => {
     };
 
     if (search) {
-      fetchPosts();
+      fetchFilms();
     }
   }, [search, setState]);
 

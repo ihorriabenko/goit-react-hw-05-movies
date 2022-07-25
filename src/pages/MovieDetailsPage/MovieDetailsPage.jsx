@@ -7,7 +7,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import SinglePost from 'modules/MovieDetails';
-import { fetchPostsWithId } from 'shared/api/films';
+import { fetchFilmsWithId } from 'shared/api/films';
 
 const SinglePostPage = () => {
   const [state, setState] = useState({
@@ -28,7 +28,7 @@ const SinglePostPage = () => {
       }));
 
       try {
-        const { data } = await fetchPostsWithId(id);
+        const { data } = await fetchFilmsWithId(id);
         setState(prevState => ({
           ...prevState,
           post: { ...data },
@@ -43,7 +43,7 @@ const SinglePostPage = () => {
     };
 
     fetchPost();
-  }, []);
+  }, [id]);
 
   const from = location.state?.from || '/';
 
